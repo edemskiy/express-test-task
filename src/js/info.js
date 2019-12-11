@@ -2,6 +2,7 @@ window.addEventListener("load", () => {
   document.querySelector("input").addEventListener("keyup", e => {
     filterForemans(e);
   });
+
   fetch("/foremans")
     .then(res => res.json())
     .then(foremans => createInfoTable(foremans));
@@ -26,8 +27,8 @@ function createInfoTable(foremans) {
   trHead = document.createElement("tr");
 
   for (let col of colsNames) {
-    let th = document.createElement("th");
-    let content = document.createTextNode(col);
+    const th = document.createElement("th");
+    const content = document.createTextNode(col);
 
     th.appendChild(content);
     trHead.appendChild(th);
@@ -59,8 +60,8 @@ function createInfoTable(foremans) {
       "% Слетов": failRate
     };
     for (let colName of colsNames) {
-      let td = document.createElement("td");
-      let content = document.createTextNode(formatForeman[colName] || "");
+      const td = document.createElement("td");
+      const content = document.createTextNode(formatForeman[colName] || "");
       td.appendChild(content);
       tr.appendChild(td);
     }
@@ -72,17 +73,17 @@ function filterForemans(e) {
   const input = e.target;
   const filter = input.value.toLowerCase();
   const table = document.querySelector("table");
-  let trCollection = table.getElementsByTagName("tr");
+  const trCollection = table.getElementsByTagName("tr");
 
   for (let tr of trCollection) {
-    let surname_td = tr.getElementsByTagName("td")[0];
-    let name_td = tr.getElementsByTagName("td")[1];
-    let middleName_td = tr.getElementsByTagName("td")[2];
+    const surname_td = tr.getElementsByTagName("td")[0];
+    const name_td = tr.getElementsByTagName("td")[1];
+    const middleName_td = tr.getElementsByTagName("td")[2];
 
     if (surname_td || name_td || middleName_td) {
-      let surnameValue = surname_td.textContent || surname_td.innerText;
-      let nameValue = name_td.textContent || name_td.innerText;
-      let middleNameValue =
+      const surnameValue = surname_td.textContent || surname_td.innerText;
+      const nameValue = name_td.textContent || name_td.innerText;
+      const middleNameValue =
         middleName_td.textContent || middleName_td.innerText;
       if (
         surnameValue.toLowerCase().indexOf(filter) > -1 ||
